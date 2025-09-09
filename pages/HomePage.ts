@@ -11,8 +11,9 @@ export class HomePage {
   }
 
   async searchFor(query: string) {
-   await this.page.getByPlaceholder('Search Amazon').click();
-   await this.page.getByPlaceholder('Search Amazon').fill(query);
-   await this.page.getByPlaceholder('Search Amazon').press('Enter');
+    await this.page.waitForLoadState('domcontentloaded');
+    await this.page.waitForSelector('#twotabsearchtextbox', { timeout: 10000 });
+    await this.page.fill('#twotabsearchtextbox', query);
+    await this.page.press('#twotabsearchtextbox', 'Enter');
   }
 }
