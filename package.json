@@ -1,14 +1,17 @@
 {
   "name": "playwrightmcp",
   "version": "1.0.0",
+  "description": "Playwright automation framework with TypeScript",
   "main": "index.js",
-  "scripts": {},
-  "keywords": [],
+  "scripts": {
+    "build": "tsc",
+    "test": "npx playwright test"
+  },
   "author": "",
   "license": "ISC",
-  "description": "",
   "devDependencies": {
     "@playwright/test": "^1.55.0",
-    "@types/node": "^24.3.1"
+    "@types/node": "^24.3.1",
+    "typescript": "^5.2.2"
   }
 }

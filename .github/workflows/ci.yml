@@ -22,15 +22,21 @@ jobs:
       - name: 📦 Install dependencies
         run: npm install
 
-      - name: 🧪 Install Playwright browsers
-        run: npx playwright install --with-deps
+      - name: 🧠 Cache Playwright Browsers
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright
+
+      - name: 🧪 Install Playwright Chromium browser only
+        run: npx playwright install chromium
 
       - name: 🚀 Run Playwright tests
         run: npx playwright test
 
       - name: 📄 Upload Playwright Report (optional)
         if: always()
-        uses: actions/upload-artifact@v4  # 🔄 Updated from v3 to v4
+        uses: actions/upload-artifact@v4
         with:
           name: playwright-report
           path: playwright-report/
