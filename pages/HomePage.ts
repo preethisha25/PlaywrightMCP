@@ -14,7 +14,7 @@ export class HomePage {
     await this.page.waitForLoadState('domcontentloaded');
 
     // Enhanced locator strategy with explicit wait
-    const searchBoxLocator = "#twotabsearchtextbox";
+    const searchBoxLocator = "//input[@name = 'field-keywords']";
     try {
       await this.page.waitForSelector(searchBoxLocator, { timeout: 15000, state: 'visible' });
       await this.page.fill(searchBoxLocator, query);
