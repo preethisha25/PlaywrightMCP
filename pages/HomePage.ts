@@ -11,7 +11,8 @@ export class HomePage {
   }
 
   async searchFor(query: string) {
-    await this.page.fill('input[name="field-keywords"]', query);
-    await this.page.press('input[name="field-keywords"]', 'Enter');
+   await this.page.getByPlaceholder('Search Amazon').click();
+   await this.page.getByPlaceholder('Search Amazon').fill(query);
+   await this.page.getByPlaceholder('Search Amazon').press('Enter');
   }
 }
