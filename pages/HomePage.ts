@@ -12,8 +12,17 @@ export class HomePage {
 
   async searchFor(query: string) {
     await this.page.waitForLoadState('domcontentloaded');
-    await this.page.waitForSelector('#twotabsearchtextbox', { timeout: 10000 });
-    await this.page.fill('#twotabsearchtextbox', query);
-    await this.page.press('#twotabsearchtextbox', 'Enter');
+
+    // Enhanced locator strategy with explicit wait
+    const searchBoxLocator = "#twotabsearchtextbox";
+    try {
+      await this.page.waitForSelector(searchBoxLocator, { timeout: 15000, state: 'visible' });
+      await this.page.fill(searchBoxLocator, query);
+      await this.page.press(searchBoxLocator, 'Enter');
+    } catch (error) {
+      console.error('Search box not found. Logging page content for debugging.');
+      console.log(await this.page.content()); // Log the page's HTML for debugging
+      throw error;
+    }
   }
 }
